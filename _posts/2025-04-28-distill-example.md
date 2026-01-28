@@ -5,9 +5,7 @@ description: Your blog post's abstract.
   Please add your abstract or summary here and not in the main body of your text. 
   Do not include math/latex or hyperlinks.
 date: 2025-04-28
-future: true
 htmlwidgets: true
-hidden: true
 
 # Anonymize when submitting
 # authors:
