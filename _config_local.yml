@@ -2,21 +2,20 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: ICLR Blogposts 2025 # the website title (if blank, full name will be used instead)
-first_name: ICLR
+title: Frontier-CS Blog Posts
+first_name: Frontier-CS
 middle_name: 
 last_name: Blog
 email: 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Home to the 2025 ICLR Blogposts track
+  Home to Frontier-CS blog posts
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: machine-learning, ml, deep-learning, reinforcement-learning, iclr  # add your own keywords or leave empty
+keywords: machine-learning, ml, deep-learning, frontier-cs, blog  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: iclr_favicon.ico  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon:  # favicon (optional; leave blank for default)
 
 url: '' # the base hostname & protocol for your site
 baseurl: /2025 # the subpath of your site, e.g. /blog/
@@ -53,7 +52,7 @@ navbar_fixed: true
 footer_fixed: true
 
 # Dimensions
-max_width: 1000px
+max_width: 1400px
 
 # TODO: add layout settings (single page vs. multi-page)
 
@@ -111,9 +110,9 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: blogposts # blog_name will be displayed in your blog page
-blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
-blog_description: Blog Posts
+blog_name: Frontier-CS blog posts
+blog_nav_title: blog
+blog_description: Frontier-CS blog posts
 permalink: /blog/:title/
 
 # Pagination
@@ -301,7 +300,7 @@ enable_masonry:             true   # enables automatic project cards arangement
 enable_math:                true   # enables math typesetting (uses MathJax)
 enable_tooltips:            false  # enables automatic tooltip links generated
                                    # for each section titles on pages and posts
-enable_darkmode:            true   # enables switching between light/dark modes
+enable_darkmode:            false  # single tech-style beige theme, no light/dark toggle
 enable_navbar_social:       false  # enables displaying social links in the
                                    # navbar on the about page
 enable_project_categories:  true   # enables categorization of projects into

@@ -31,6 +31,18 @@ $grey-900:            #212529;
 $white-color: #ffffff !default;
 $black-color: #000000 !default;
 
+// Tech-style beige palette (single theme)
+$beige-bg:        #f8f5ef !default;
+$beige-bg-card:   #fffefb !default;
+$beige-text:      #2d2a26 !default;
+$beige-text-light:#6b6560 !default;
+$beige-divider:   rgba(45, 42, 38, 0.12) !default;
+// Accent: deeper teal-green, stands out on beige background
+$beige-accent:    #1a5f5f !default;
+$beige-accent-hover: #0d4a4a !default;
+// Code: warmer tan background, dark text for clear contrast
+$beige-code-bg:   #e2dcd2 !default;
+$beige-code-text: #2d2a26 !default;
 
 // Theme colors
 

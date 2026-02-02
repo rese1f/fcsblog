@@ -2,18 +2,18 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: FrontierCS # the website title (if blank, full name will be used instead)
-first_name: FrontierCS
+title: Frontier-CS Blog Posts
+first_name: Frontier-CS
 middle_name:
-last_name: Blogposts
+last_name: Blog
 email: 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Home to the 2025 ICLR Blogposts track
+  Home to Frontier-CS blog posts
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: machine-learning, ml, deep-learning, reinforcement-learning, iclr  # add your own keywords or leave empty
+keywords: machine-learning, ml, deep-learning, frontier-cs, blog  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon:   # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
@@ -111,9 +111,9 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Blogposts # blog_name will be displayed in your blog page
-blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
-blog_description: Blog Posts
+blog_name: Frontier-CS blog posts
+blog_nav_title: blog
+blog_description: Frontier-CS blog posts
 permalink: /blog/:title/
 
 # Pagination

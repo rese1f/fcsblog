@@ -23,6 +23,7 @@ group :jekyll_plugins do
     gem 'jemoji'
     gem 'unicode_utils'
     gem 'webrick'
+    gem 'ostruct'  # Required since Ruby 4.0 (removed from stdlib)
 end
 group :other_plugins do
     gem 'css_parser'

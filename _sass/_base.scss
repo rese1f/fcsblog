@@ -601,21 +601,19 @@ figure.highlight {
 }
 
 pre {
-  color: var(--global-theme-color);
+  color: var(--global-code-text-color);
   background-color: var(--global-code-bg-color);
-  border-radius: 6px;
   padding: 6px 12px;
   pre, code {
     background-color: transparent;
-    border-radius: 0;
     padding: 0;
+    color: inherit;
   }
 }
 
 code {
-  color: var(--global-theme-color);
+  color: var(--global-code-text-color);
   background-color: var(--global-code-bg-color);
-  border-radius: 3px;
   padding: 3px 3px;
 }
 
