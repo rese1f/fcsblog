@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Frontier-CS blog posts
+title: blog
 pagination:
   enabled: true
   collection: posts
@@ -11,28 +11,18 @@ pagination:
   trail:
     before: 1
     after: 3
-# Only show posts from this year on the blog index
-show_year: 2026
 ---
 
 <div class="post">
 
   <div class="header-bar">
-    <h1>Frontier-CS blog posts</h1>
-    <h2>Frontier-CS blog posts</h2>
+    <h1>{{ site.blog_name }}</h1>
+    <h2>{{ site.blog_description }}</h2>
   </div>
 
-  {% if page.show_year %}
-  {% assign year_str = page.show_year | append: '' %}
-  {% assign posts_to_iterate = site.posts | sort: "date" | reverse %}
-  {% else %}
-  {% assign posts_to_iterate = paginator.posts %}
-  {% endif %}
   <ul class="post-list">
-    {% for post in posts_to_iterate %}
-    {% assign post_year = post.date | date: "%Y" %}
-    {% unless page.show_year %}{% assign show_post = true %}{% else %}{% if post_year == year_str %}{% assign show_post = true %}{% else %}{% assign show_post = false %}{% endif %}{% endunless %}
-    {% if show_post %}
+    {% for post in paginator.posts %}
+
     {% if post.external_source == blank %}
       {% assign read_time = post.content | number_of_words | divided_by: 180 | plus: 1 %}
     {% else %}
@@ -86,12 +76,10 @@ show_year: 2026
           {% endif %}
     </p>
     </li>
-    {% endif %}
+
     {% endfor %}
   </ul>
 
-  {% unless page.show_year %}
   {% include pagination.html %}
-  {% endunless %}
 
 </div>
