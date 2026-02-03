@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Frontier-CS 1.0 Releasing
+title: Frontier-CS 1.0 Release
 description: We are releasing Frontier-CS 1.0, a major update to our open-ended Computer Science benchmark. This release expands Frontier-CS to 240 tasks across both the algorithmic and research tracks. We also introduce a new Elo-based leaderboard, along with full execution traces of model solutions to enable deeper analysis and reproducibility. 
 
 date: 2026-02-03
