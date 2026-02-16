@@ -41,16 +41,14 @@ toc:
 
 _styles: >
   d-article img {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
     display: block;
     margin: 1.5rem auto;
     border-radius: 6px;
   }
-  d-article p img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  d-article img.hero {
+    max-width: 100%;
   }
 ---
 
@@ -60,7 +58,7 @@ _styles: >
 
 ## Evaluating the Hardest CS Problems in the Age of LLMs
 
-![Evaluation pipeline overview](/assets/img/2026-02-10-evaluation/image1.jpg)
+<img src="/assets/img/2026-02-10-evaluation/image1.jpg" alt="Evaluation pipeline overview" class="hero">
 
 <!-- PLACEHOLDER: hero image — a stylized diagram showing diverse problem
      types (CUDA kernel, algorithm, data structure) funneling into a unified
