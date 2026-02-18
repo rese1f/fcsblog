@@ -58,7 +58,7 @@ _styles: >
 
 ## Evaluating the Hardest CS Problems in the Age of LLMs
 
-<img src="/assets/img/2026-02-10-evaluation/image1.jpg" alt="Evaluation pipeline overview" class="hero">
+<img src="{{ site.baseurl }}/assets/img/2026-02-10-evaluation/image1.jpg" alt="Evaluation pipeline overview" class="hero">
 
 <!-- PLACEHOLDER: hero image — a stylized diagram showing diverse problem
      types (CUDA kernel, algorithm, data structure) funneling into a unified
@@ -97,7 +97,7 @@ scoring harness, and collecting results. Now multiply that by 7 models, 240
 problems, and 5 runs each. That's 8,400 evaluations per cycle, and a new
 cycle starts every time a model provider ships an update.
 
-![Traditional vs Frontier-CS evaluation](/assets/img/2026-02-10-evaluation/image2.png)
+<img src="{{ site.baseurl }}/assets/img/2026-02-10-evaluation/image2.png" alt="Traditional vs Frontier-CS evaluation">
 
 <!-- PLACEHOLDER: side-by-side comparison diagram.
      Left: "Traditional benchmark" — code → test → pass/fail.
@@ -182,7 +182,7 @@ accelerators, instance type) derived from each problem's `config.yaml`.
 Each group gets its own pool of SkyPilot clusters, sized proportionally to
 the number of problems in that group.
 
-![Resource-grouped cluster pools](/assets/img/2026-02-10-evaluation/image3.png)
+<img src="{{ site.baseurl }}/assets/img/2026-02-10-evaluation/image3.png" alt="Resource-grouped cluster pools">
 
 <!-- PLACEHOLDER: diagram showing resource grouping.
      Three groups: "GPU problems" → GPU cluster pool (3 clusters),
@@ -231,7 +231,7 @@ guarantee that **every valid score on the leaderboard was produced under
 the same pinned conditions**. Determinism through immutability, not through
 cross-environment normalization.
 
-![Pin, hash, and invalidate cycle](/assets/img/2026-02-10-evaluation/image4.png)
+<img src="{{ site.baseurl }}/assets/img/2026-02-10-evaluation/image4.png" alt="Pin, hash, and invalidate cycle">
 
 <!-- PLACEHOLDER: diagram showing the "pin + hash + invalidate" cycle.
      config.yaml pins hardware/CUDA/deps → Docker image & AMI lock the
@@ -277,7 +277,7 @@ itself has side effects: it reads the environment, runs tests, modifies
 code across multiple turns. The boundary between "generating a solution"
 and "evaluating it" starts to blur.
 
-![File-based vs agentic submission pipeline](/assets/img/2026-02-10-evaluation/image5.png)
+<img src="{{ site.baseurl }}/assets/img/2026-02-10-evaluation/image5.png" alt="File-based vs agentic submission pipeline">
 
 <!-- PLACEHOLDER: side-by-side diagram.
      Left "Today": LLM → source file → [sandbox] evaluation → score.
@@ -351,7 +351,7 @@ instead of SkyPilot clusters.
   changed pairs are evaluated. Right-sized cluster pools mean no wasted
   compute.
 
-![Batch run terminal output (mockup)](/assets/img/2026-02-10-evaluation/image6.png)
+<img src="{{ site.baseurl }}/assets/img/2026-02-10-evaluation/image6.png" alt="Batch run terminal output (mockup)">
 
 <!-- PLACEHOLDER: screenshot of a terminal showing a batch run in progress.
      tqdm progress bar, [OK] and [FAIL] lines, final summary with
