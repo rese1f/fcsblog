@@ -111,6 +111,8 @@ When faced with a difficult optimization task lacking a strict, immediate verifi
 
 ## Real-World Implications
 
+<img src="{{ site.baseurl }}/assets/img/2026-02-14-negative-optimization/image6.jpg" alt="Performance Contrast: Algorithm vs. Heuristic" class="hero">
+
 This is why continuous scoring in benchmarks like Frontier-CS is critical. In a binary pass/fail system, this regression might be masked. 
 
 More importantly, the open-ended problems in Frontier-CS reveals the realities of actual software engineering. Production codebases and complex system architectures do not have a absolute, formal verifier. If we trust LLMs to autonomously optimize systems without strict bounds, they are highly intended to introducing fragile, edge-case-blind logic that works in theory but causes systemic collapse in practice. 
