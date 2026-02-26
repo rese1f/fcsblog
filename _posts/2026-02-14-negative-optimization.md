@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: The Reverse Optimization Trap - LLM Defeated in Open-ended Problems
+title: LLM Defeated in Open-ended Problems
 description: "Modern LLMs claim superhuman algorithmic abilities, but what happens when there is no strict verifier? We analyze how multi-turn 'optimization' in Frontier-CS exposes the cognitive ceiling and catastrophic failures of AI in open-ended problem solving."
 
 date: 2026-02-26
@@ -41,15 +41,17 @@ _styles: >
   }
 ---
 
-According to official technical reports, Deep Think's model boasts an astonishing Codeforces rating of 3455. Our own independent evaluation initially seemed to corroborate this elite algorithmic capability: using rigorous Bayesian estimation on a curated set of complex traditional algorithm problems, we calculated an actual posterior rating peaking at 3399. However, this numerical triumph masks a severe cognitive vulnerability. When we shifted the evaluation from these definite algorithmic problems to the open-ended, continuous-scoring environment of the AtCoder Heuristic Contest (AHC), the model's performance completely collapsed, falling drastically short of the expectations set by its theoretical Elo rating.
+<img src="{{ site.baseurl }}/assets/img/2026-02-14-negative-optimization/image2.png" alt="Performance Contrast: Algorithm vs. Heuristic" class="hero">
+
+According to official technical reports, Deep Think's model achieves a Codeforces elo rating of 3455. Our independent evaluation estimates Deep Think's actual rating to be roughly 3299. However, during the open-ended AtCoder Heuristic Contest (AHC), the model only managed non-zero scores on under **50%** of the problems — a strong contrast to its performance on traditional algorithms. We conducted detailed cause analysis and case study based on the result.
 
 ## The Real-World Evaluation Gap
 
-In our daily practice, we've noticed a consistent trend: Modern LLMs' (etc. Deep Think) effectiveness in actual work environments isn't nearly as outstanding as their amazing performance on traditional algorithmic benchmarks might imply.
+In actual working environment, a consistent trend has been noticed widely: Modern LLMs' (etc. Deep Think) effectiveness in actual work environments isn't nearly as outstanding as their amazing performance on traditional algorithmic benchmarks shows.
 
-Unlike solving standard competitive programming problems with fixed boundaries, real-world work fundamentally tests a model's capacity for continual learning and adaptation. There is a significant mismatch between current model behaviors and what traditional algorithmic benchmarks actually measure. To truly evaluate a model's ability to handle complex, ambiguous scenarios, we must test it using open-ended problems. Because these challenges lack a single deterministic answer or definitive ceiling, they force the model to iteratively evaluate partial feedback and dynamically refine its strategy over multiple turns.
+Unlike solving standard competitive programming problems with fixed boundaries, real-world work fundamentally tests a model's capacity for continual learning and adaptation. There is a significant mismatch between current model behaviors and what traditional algorithmic benchmarks actually measure. To truly evaluate a model's ability to handle complex, ambiguous scenarios, we must test it using open-ended problems.
 
-To illustrate this, we evaluated Deep Think on two entirely different tracks: 30 of the newest Codeforces problems with a high difficulty rating of 2500+ (representing traditional, strict-boundary algorithmic tasks), alongside all 30 short-format problems from the AtCoder Heuristic Contest (representing open-ended, heuristic challenges).
+To illustrate this, we evaluated Deep Think on two entirely different tracks: 30 of the newest Codeforces problems with a high difficulty rating of 2500+ (representing traditional, strict-boundary algorithmic tasks), alongside all 33 short-format problems from the AtCoder Heuristic Contest (representing open-ended, heuristic challenges).
 
 <img src="{{ site.baseurl }}/assets/img/2026-02-14-negative-optimization/image1.png" alt="Performance Contrast: Algorithm vs. Heuristic" class="hero">
 
@@ -89,6 +91,8 @@ The model attempted to split its query budget into stages, testing highly compos
 
 ## The Anatomy of the Trap
 
+<img src="{{ site.baseurl }}/assets/img/2026-02-14-negative-optimization/image5.jpg" alt="Performance Contrast: Algorithm vs. Heuristic" class="hero">
+
 This looks like sophisticated engineering, but it is a catastrophic theoretical failure. 
 
 The LLM optimized purely for the **average case** (composite numbers) while entirely blinding itself to the **worst case** (prime numbers). If the cycle length S is a large prime like 999,983, it shares no factors with the model's composite guesses. The effective cycle length remains unchanged, and the "optimization" yields zero benefit. 
@@ -100,6 +104,8 @@ Then as a result, the model fragmented its strict query budget. By the time it r
 ## The Post-Training Flaw
 
 This behavior highlights a profound issue with modern LLMs. During post-training, AI institutions frequently optimize for state-of-the-art benchmark scores by artificially encouraging the model to take risks instead of stable choices. By generating multiple diverse rollouts and selecting only the highest-scoring one—a technique known as Best-of-N sampling—the training process disproportionately rewards high-variance, speculative logic over safe, incremental improvements. Consequently, the fully trained model naturally defaults to risky, "all-or-nothing" gambles rather than stable optimization methods.
+
+<img src="{{ site.baseurl }}/assets/img/2026-02-14-negative-optimization/image4.jpg" alt="Performance Contrast: Algorithm vs. Heuristic" class="hero">
 
 When faced with a difficult optimization task lacking a strict, immediate verifier, the model resorts to a "lazy" strategy. Instead of doing the grueling work of designing a universally stable improvement, it speculates. It chooses unstable, point-cheating tricks that create the illusion of problem-solving but performs terribly under the pressure of strong, worst-case test data. The model effectively hit a cognitive ceiling, opting for giving an incorrect optimization rather than acknowledging the limits of its reasoning.
 
