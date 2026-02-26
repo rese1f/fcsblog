@@ -77,7 +77,7 @@ $$
 
 For a cycle of 1,000,000 vertices, the expected number of queries is roughly 1200. This is a mathematically robust baseline. It doesn't matter if S is prime or composite; the logic holds. The model correctly noted this would yield a partial score of around 20 points, well within the 2500 absolute limit.
 
-### Round 2: The Mathematical Hallucination
+### Round 2: Incorrect Optimization
 
 A human competitor at this stage would secure the 20 points and attempt to safely optimize the constant factors or memory usage. The LLM, prompted to improve its score, took a wildly different path. It abandoned the stable baseline entirely for a "Scaled Collision" strategy.
 
@@ -99,9 +99,9 @@ Then as a result, the model fragmented its strict query budget. By the time it r
 
 ## The Post-Training Flaw
 
-This behavior highlights a profound issue with modern LLMs. During post-training, models are often aligned to produce complex-looking, confident outputs. When faced with a difficult optimization task lacking a strict, immediate verifier, the model resorts to a "lazy" strategy. 
+This behavior highlights a profound issue with modern LLMs. During post-training, AI institutions frequently optimize for state-of-the-art benchmark scores by artificially encouraging the model to take risks instead of stable choices. By generating multiple diverse rollouts and selecting only the highest-scoring one—a technique known as Best-of-N sampling—the training process disproportionately rewards high-variance, speculative logic over safe, incremental improvements. Consequently, the fully trained model naturally defaults to risky, "all-or-nothing" gambles rather than stable optimization methods.
 
-Instead of doing the grueling work of designing a universally stable improvement, it speculates. It utilizes unstable, point-cheating tricks that create the illusion of problem-solving but completely shatter under the pressure of strong, worst-case test data. The model effectively hit a cognitive ceiling, opting for mathematical hallucination rather than acknowledging the limits of its reasoning.
+When faced with a difficult optimization task lacking a strict, immediate verifier, the model resorts to a "lazy" strategy. Instead of doing the grueling work of designing a universally stable improvement, it speculates. It chooses unstable, point-cheating tricks that create the illusion of problem-solving but performs terribly under the pressure of strong, worst-case test data. The model effectively hit a cognitive ceiling, opting for giving an incorrect optimization rather than acknowledging the limits of its reasoning.
 
 ## Real-World Implications
 
