@@ -105,6 +105,51 @@ Frontier-CS is already helping push the field toward real large-scale evaluation
 
 ### Use Case 1: Online Evolution
 
+### Use Case 2: Offline Learning
+
+The core idea of **ACE offline** is to improve an agent by training an evolving context, or we call it **playbook**, on a fixed training set. Instead of updating model weights, ACE updates the agent’s context through three stages: the **Generator** attempts problems, the **Reflector** extracts useful lessons from successes and failures, and the **Curator** merges these lessons into a structured playbook. Over time, the playbook accumulates reusable strategies, common mistakes, and code patterns that can be transferred to unseen tasks. This follows the central ACE design principle that contexts should function as **evolving playbooks** rather than short static prompts.
+
+In the offline setting, this adaptation occurs entirely on the training split. In our experiments, the dataset contains **120 training problems, 25 validation problems, and 27 test problems**. The validation set is used to select the best playbook checkpoint during training, and the selected best playbook is then evaluated on held-out test problems. Intuitively, offline ACE resembles studying from a growing notebook before an exam: the model’s parameters remain unchanged, but it enters evaluation equipped with a richer collection of structured strategies.
+
+During offline training, ACE continuously expands its playbook of strategies. These entries are stored as structured bullets such as strategies, heuristics, code templates, and common mistakes. This playbook corresponds to the evolving context memory described in ACE, where knowledge accumulates through repeated cycles of generation, reflection, and curation.
+
+<div style="text-align: center; margin-bottom: 0;">
+  <figure style="margin-bottom: 0;">
+    <img src="{{ 'assets/img/2026-03-06-agent-evaluation/playbook.png' | relative_url }}" style="width: 90%; border-radius: 6px;" alt="Permutation Task" data-zoomable>
+  </figure>
+</div>
+
+Over the course of training, the playbook grows substantially—from roughly **2k tokens to about 62k tokens**. However, the best-performing checkpoint occurs when the playbook is only around **20k tokens**, suggesting that larger contexts do not necessarily lead to better performance. Moreover, most of the content of playbook is relatively specific, only 13 out of 110 could be applied generally. Aggressive accumulation may introduce redundancy or noise that weakens the usefulness of the stored knowledge.
+
+We observe that the best performance occurs at **epoch 1, step 70**, after which training begins to degrade. In many cases, the pre-training accuracy is actually higher than the post-training accuracy, indicating that the playbook may start to **overfit the training tasks**. Overall improvements remain relatively modest (around **2% on average**), suggesting that extremely large playbooks can dilute useful signals. In practice, **pruning or filtering low-value entries** may help maintain a more effective context.
+<div style="text-align: center; margin-bottom: 0;">
+  <figure style="margin-bottom: 0;">
+    <img src="{{ 'assets/img/2026-03-06-agent-evaluation/offline-table.png' | relative_url }}" style="width: 90%; border-radius: 6px;" alt="Score Comparison" data-zoomable>
+  </figure>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+  <figure style="text-align: center; margin: 0; flex: 1; max-width: 45%;">
+    <img src="{{ 'assets/img/2026-03-06-agent-evaluation/offline-validation-score.png' | relative_url }}" style="width: 100%; border-radius: 6px;" alt="Baby-Giant" data-zoomable>
+    <figcaption style="margin-top: 0.5rem; font-size: 0.5em; font-weight: bold;">validation mean score: score on the separate validation set, computed periodically.</figcaption>
+  </figure>
+  <figure style="text-align: center; margin: 0; flex: 1; max-width: 45%;">
+    <img src="{{ 'assets/img/2026-03-06-agent-evaluation/pre-post train accuracy.png' | relative_url }}" style="width: 100%; border-radius: 6px;" alt="Result" data-zoomable>
+    <figcaption style="margin-top: 0.5rem; font-size: 0.5em; font-weight: bold;">pre_train accuracy: score on training samples before playbook updates.<br>post_train accuracy: score on the same training samples after playbook updated.<br>cumulative by epoch.</figcaption>
+  </figure>
+</div>
+
+### Implications for Future Work
+
+Our offline results suggest that the main bottleneck is not simply **how much knowledge** the playbook stores, but **what kind of knowledge** it stores and how that knowledge is used.
+
+First, many playbook entries are **too task-specific**, capturing narrow solution details rather than reusable strategies. Future work may need stronger **abstraction mechanisms** that distill concrete experiences into higher-level algorithmic principles that transfer across tasks.
+
+Second, as the playbook grows, performance does not necessarily improve. In our experiments, the playbook expands from roughly **2k tokens to 62k tokens**, but the best-performing checkpoint occurs around **20k tokens**. This suggests that context evolution should focus on **selective accumulation** rather than simply growing larger contexts.
+
+Finally, a key limitation is **weak credit assignment**. Because the model outputs only code, it is difficult to determine which playbook entries actually contributed to a solution. Future systems may benefit from better attribution or retrieval mechanisms that track which strategies are used and activate only the most relevant knowledge for each task.
+
+Overall, these results suggest that the next generation of evolving-agent systems may depend less on building larger playbooks and more on learning how to construct **more structured, reusable, and selectively activated knowledge**.
 Many discovery problems operate in **online evolutionary settings**: the system repeatedly proposes solutions, receives feedback, and refines future candidates over long horizons. The key capability here is not just producing good solutions, but **learning to improve from experience over time**.
 
 In practice, progress depends heavily on the **search strategy**—how prior solutions are selected and how new candidates are generated. However, most existing systems (e.g., [GEPA](https://arxiv.org/abs/2507.19457), [ShinkaEvolve](https://arxiv.org/abs/2602.12877), [OpenEvolve](https://github.com/codelion/openevolve)) rely on **fixed strategies with manually tuned parameters** such as explore–exploit ratios or elite selection rules. While these can work well initially, they often **stagnate** when the search landscape shifts—either across tasks or across different stages of the same optimization.
