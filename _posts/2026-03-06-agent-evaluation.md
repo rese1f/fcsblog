@@ -25,6 +25,8 @@ toc:
   - name: Why the Evaluation Gap?
   - name: Frontier-CS as the Standard Benchmark for Evolving Agents
   - name: From Small Case Studies to Comprehensive Evaluation
+  - name: "Use Case 1: Online Evolution"
+  - name: "Use Case 2: Offline Learning"
 
 _styles: >
   d-article img {
@@ -102,5 +104,29 @@ Frontier-CS is already helping push the field toward real large-scale evaluation
 
 
 ### Use Case 1: Online Evolution
+
+Many discovery problems operate in **online evolutionary settings**: the system repeatedly proposes solutions, receives feedback, and refines future candidates over long horizons. The key capability here is not just producing good solutions, but **learning to improve from experience over time**.
+
+In practice, progress depends heavily on the **search strategy**—how prior solutions are selected and how new candidates are generated. However, most existing systems (e.g., [GEPA](https://arxiv.org/abs/2507.19457), [ShinkaEvolve](https://arxiv.org/abs/2602.12877), [OpenEvolve](https://github.com/codelion/openevolve)) rely on **fixed strategies with manually tuned parameters** such as explore–exploit ratios or elite selection rules. While these can work well initially, they often **stagnate** when the search landscape shifts—either across tasks or across different stages of the same optimization.
+
+This motivates **adaptive evolutionary algorithms** that modify their own search behavior during optimization. [SkyDiscover](https://skydiscover-ai.github.io/blog.html) provides a modular framework for implementing such adaptive strategies, including **AdaEvolve** and **EvoX**:
+
+- **AdaEvolve** adjusts search intensity and resource allocation based on real-time progress signals.
+- **EvoX** goes further—letting the LLM evolve the strategy itself that governs how past experiences are selected and reused.
+
+Across the full Frontier-CS benchmark, **adaptive evolution consistently outperforms fixed-strategy methods** such as OpenEvolve, GEPA, and ShinkaEvolve. The results highlight that adaptive search becomes increasingly important when evaluating evolving agents **at scale**, where task diversity and difficulty expose the brittleness of static strategies.
+
+A concrete example illustrates this well. On a **polyomino packing** task from Frontier-CS, the adaptive algorithm starts from a simple baseline and gradually discovers improved placement strategies—better ordering, symmetry handling, and local compaction—leading to progressively denser layouts over time:
+
+<div style="text-align: center; margin-bottom: 0;">
+  <figure style="margin-bottom: 0;">
+    <img src="{{ 'assets/img/2026-03-06-agent-evaluation/evolution.gif' | relative_url }}" style="width: 40%; border-radius: 6px;" alt="Online Evolution on Polyomino Packing">
+    <figcaption style="margin-top: 0.5rem; font-size: 0.9em; font-weight: bold;">Adaptive evolution progressively discovers denser packing strategies on a polyomino task.</figcaption>
+  </figure>
+</div>
+
+<div style="background: #f0f4fa; border-left: 4px solid #4a90d9; padding: 1rem 1.2rem; border-radius: 6px; margin: 1.5rem 0; color: #1a1a1a;">
+<strong>📢 Call for Action.</strong> This task is far from saturated. A human expert achieves a packing score of <strong>92</strong>, while the best current evolving agent reaches only the low 80s—leaving substantial room for improvement. This stands in sharp contrast to benchmarks like circle packing, where all major methods have already converged to the same ceiling. Frontier-CS tasks are designed with deep search spaces and high expert-level ceilings, ensuring they remain meaningful as methods improve. We encourage the community to develop <strong>stronger online evolution strategies</strong> and push toward—and beyond—the human expert frontier.
+</div>
 
 ### Use Case 2: Offline Learning
