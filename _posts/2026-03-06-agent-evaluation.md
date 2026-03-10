@@ -3,8 +3,8 @@ layout: distill
 title: Evaluating Evolving Agent Systems at Scale with Frontier-CS
 description: "Evolving agent systems are advancing fast, but evaluation hasn't kept up. We show how Frontier-CS enables comprehensive, large-scale benchmarking of evolving agents—moving beyond small case studies for comparison at scale."
 
-date: 2026-03-06
-date_display: "Mar 6, 2026"
+date: 2026-03-10
+date_display: "Mar 10, 2026"
 htmlwidgets: true
 
 authors:
