@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: Evaluating Evolving Agent Systems at Scale with Frontier-CS
-description: "Evolving agent systems are advancing fast, but evaluation hasn't kept up. We show how Frontier-CS enables comprehensive, large-scale benchmarking of evolving agents—moving beyond small case studies to fair comparison at scale."
+description: "Evolving agent systems are advancing fast, but evaluation hasn't kept up. We show how Frontier-CS enables comprehensive, large-scale benchmarking of evolving agents—moving beyond small case studies for comparison at scale."
 
 date: 2026-03-06
 date_display: "Mar 6, 2026"
@@ -53,9 +53,10 @@ _styles: >
 <div style="text-align: center;">
   <img src="https://raw.githubusercontent.com/FrontierCS/Frontier-CS/main/assets/logo.png" style="width: 80%; border-radius: 6px;" alt="Frontier-CS Logo">
 </div>
-### Evolving Agents Are the Next Frontier for LLMs
 
-Evolving agent systems—including methods based on **continual learning**, **memory evolution**, and **context refinement**—are emerging as a promising path toward agents that improve through experience rather than relying on a fixed policy. This matters especially in discovery-style settings, where the agent must learn from prior failures, accumulate useful knowledge, and adapt its future behavior over long horizons. Recent work such as [GEPA](https://arxiv.org/abs/2507.19457) and [ACE (Agentic Context Evolution)](https://arxiv.org/abs/2601.08747) reflects this trend.
+## Evolving Agents Are the Next Frontier for LLMs
+
+Evolving agent systems—including methods based on **continual learning**, **memory evolution**, and **context refinement**—are emerging as a promising path toward agents that improve through experience rather than relying on a fixed policy. This matters especially in discovery-style settings, where the agent must learn from prior failures, accumulate useful knowledge, and adapt its future behavior over long horizons. Recent work such as [GEPA](https://arxiv.org/abs/2507.19457) and [ACE (Agentic Context Evolution)](https://arxiv.org/abs/2601.08747), [SkyDiscover](https://skydiscover-ai.github.io/) reflects this trend.
 
 ### A Promising Direction, Bottlenecked by Evaluation
 However, evaluation has not kept up. Most prior work demonstrates gains on **only ~10 tasks**, often selected case studies or small benchmark subsets. That is a weak test for evolving systems: improvement on three or four tasks does not tell us whether a method can generalize across a broad task distribution, remain stable over many iterations, or handle the kinds of long-horizon, high-difficulty reasoning that make evolution necessary in the first place.
@@ -80,7 +81,7 @@ Circle packing is a representative case: the core solution is typically just a *
   </figure>
 </div>
 
-### Frontier-CS as the Standard Benchmark for Evolving Agents
+## Frontier-CS as the Standard Benchmark for Evolving Agents
 
 Frontier-CS is built to solve exactly the failures of current evaluation. It includes **172 algorithmic tasks** and **68 research tasks**, all **expert-designed** by **ICPC World Finalists** and **CS PhDs**. That gives it both the **scale** and the **quality consistency** missing from small, community-maintained benchmark sets.
 
